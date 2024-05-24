@@ -45,9 +45,12 @@ const addTask = () => {
       if (!(e.target.className == "edit")) {
         targetElement = e.target.parentElement;
       }
-      newTaskInput.value = targetElement.previousElementSibling?.innerText;
+      if (!targetElement.previousElementSibling.previousElementSibling.checked) {
+        taskCount -= 1;
+        displayCount(taskCount);
+      }
+      newTaskInput.value = targetElement.previousElementSibling.innerText;
       targetElement.parentNode.remove();
-      displayCount(taskCount);
     };
   });
 
